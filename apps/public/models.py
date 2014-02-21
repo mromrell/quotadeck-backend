@@ -25,6 +25,7 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Address'
 
+
 class Company(models.Model):
     companyName = models.CharField(max_length=200)
     street = models.CharField(max_length=200)
