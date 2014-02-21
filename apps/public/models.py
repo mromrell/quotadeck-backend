@@ -50,7 +50,7 @@ class Company(models.Model):
 
 
 class CompanyUser(models.Model):
-    user = models.OneToOneRel(User)
+    user = models.ForeignKey(User)
     email = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=200, blank=True, null=True)
     company = models.ForeignKey(Company)
@@ -62,8 +62,9 @@ class CompanyUser(models.Model):
     class Meta:
         verbose_name_plural = 'CompanyUser'
 
+
 class SalesUser(models.Model):
-    user = models.OneToOneRel(User)
+    user = models.ForeignKey(User)
     email = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=200, blank=True, null=True)
     industry = models.CharField(max_length=200, blank=True, null=True)
