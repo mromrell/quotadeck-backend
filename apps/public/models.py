@@ -48,11 +48,11 @@ class Company(models.Model):
     class Meta:
         verbose_name_plural = 'Company'
 
-class CompanyUser(models.Model):
 
+class CompanyUser(models.Model):
     user = models.ForeignKey(User)
-    email = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
+    email = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
     company = models.ForeignKey(Company)
     dateJoined = models.DateField(default=datetime.now)
 
@@ -62,10 +62,11 @@ class CompanyUser(models.Model):
     class Meta:
         verbose_name_plural = 'CompanyUser'
 
+
 class SalesUser(models.Model):
     user = models.ForeignKey(User)
-    email = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
+    email = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
     industry = models.CharField(max_length=200, blank=True, null=True)
     productsServices = models.CharField(max_length=200, blank=True, null=True)
     salePriceLow = models.IntegerField(blank=True, null=True)
