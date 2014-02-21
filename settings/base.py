@@ -49,7 +49,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # This should be set to the test domain (e.g. test.django-angular-pt.com)
-ALLOWED_HOSTS = ['my-empty-seed-project-be.herokuapp.com']
+ALLOWED_HOSTS = ['quotadeck-backend.herokuapp.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -197,7 +197,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
 CORS_ORIGIN_WHITELIST = (
     'my-empty-seed-project.herokuapp.com',
-    'my-empty-seed-project-be.herokuapp.com/'
+    'quotadeck-backend.herokuapp.com'
 )
 
 try:
