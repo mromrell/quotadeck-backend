@@ -16,9 +16,15 @@ urlpatterns = patterns(
     url(r'^users$', UserList.as_view(), name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view(), name='user-detail'),
 
-    url(r'^company$', CompanyList.as_view(), name='company-list'),
+    url(r'^companies$', CompanyList.as_view(), name='company-list'),
+    url(r'^company$', CompanyDetail.as_view(), name='company-detail'),
     url(r'^company-user/(?P<pk>[0-9]+)$', CompanyUserDetail.as_view(), name='company-user-detail'),
+
+    url(r'^applications/(?P<pk>[0-9]+)$', ApplicationList.as_view(), name='application-list'),
+    url(r'^chat/(?P<pk>[0-9]+)$', ChatList.as_view(), name='chat-list'),
     url(r'^sales-user/(?P<pk>[0-9]+)$', SalesUserDetail.as_view(), name='Sales-user-detail'),
+
+    url(r'^job$', JobList.as_view(), name='job-list'),
 )
 
 urlpatterns += patterns('', url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'))

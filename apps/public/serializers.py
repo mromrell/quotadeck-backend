@@ -29,3 +29,18 @@ class SalesUserSerializer(serializers.ModelSerializer):
     """Serializes a SalesUser object"""
     class Meta:
         model = SalesUser
+
+class JobSerializer(serializers.ModelSerializer):
+    """Serializes a Job object"""
+    class Meta:
+        model = Job
+
+class ApplicationSerializer(serializers.ModelSerializer):
+    """Serializes a Application object"""
+    class Meta:
+        model = Application
+
+class ChatSerializer(serializers.ModelSerializer):
+    """Serializes a Chat object"""
+    class Meta:
+        model = Chat

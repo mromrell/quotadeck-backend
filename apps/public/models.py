@@ -78,3 +78,61 @@ class SalesUser(models.Model):
 
     class Meta:
         verbose_name_plural = 'SalesUser'
+
+
+class Job(models.Model):
+    user = models.ForeignKey(User)
+    company = models.ForeignKey(Company)
+    dateAdded = models.DateField(default=datetime.now)
+    jobTitle = models.CharField(max_length=200)
+    jobDescription = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return u'%s, %s' % (self.jobTitle, self.company)
+
+    class Meta:
+        verbose_name_plural = 'Job'
+
+
+class Application(models.Model):
+    user = models.ForeignKey(User)
+    job = models.ForeignKey(Job)
+    dateApplied = models.DateField(default=datetime.now)
+    appTitle = models.CharField(max_length=200)
+    appDescription = models.CharField(max_length=200)
+    appCost = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return u'%s, %s, %s' % (self.job, self.user, self.dateApplied)
+
+    class Meta:
+        verbose_name_plural = 'Application'
+
+
+class Chat(models.Model):
+    user = models.ForeignKey(User)
+    job = models.ForeignKey(Job)
+    company = models.ForeignKey(Company)
+    dateSent = models.DateField(default=datetime.now)
+    chatContent = models.CharField(max_length=1000)
+
+    def __unicode__(self):
+        return u'%s, %s, %s' % (self.job, self.user, self.dateSent)
+
+    class Meta:
+        verbose_name_plural = 'Chat'
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(User)
+    job = models.ForeignKey(Job)
+    company = models.ForeignKey(Company)
+    dateRated = models.DateField(default=datetime.now)
+    ratingDetails = models.CharField(max_length=1000)
+    rating = models.IntegerField(blank=True, null=True, max_length=2)
+
+    def __unicode__(self):
+        return u'%s, %s, %s' % (self.job, self.user, self.dateSent)
+
+    class Meta:
+        verbose_name_plural = 'Chat'

@@ -25,28 +25,39 @@ class JSONResponse(HttpResponse):
 
 class UserList(generics.ListCreateAPIView):
     """List all users or create a new User"""
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     model = User
     serializer_class = UserSerializer
 
 
 class UserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a User instance."""
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     model = User
     serializer_class = UserSerializer
 
 class CompanyUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a CompanyUser instance."""
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     model = CompanyUser
     serializer_class = CompanyUserSerializer
 
+class CompanyDetail(generics.RetrieveAPIView):
+    """Retrieve, update or delete a CompanyUser instance."""
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Company
+    serializer_class = CompanySerializer
+
 class SalesUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a SalesUser instance."""
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     model = SalesUser
     serializer_class = SalesUserSerializer
+
+class ApplicationList(generics.RetrieveAPIView):
+    """Retrieve, update or delete a SalesUser instance."""
+    model = Application
+    serializer_class = ApplicationSerializer
 
 
 class AddressList(generics.ListCreateAPIView):
@@ -58,7 +69,7 @@ class AddressList(generics.ListCreateAPIView):
 
 class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
     """Retrieve, update or delete an Address."""
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     model = Address
     serializer_class = AddressSerializer
 
@@ -67,6 +78,18 @@ class CompanyList(generics.ListCreateAPIView):
     #permission_classes = (permissions.IsAuthenticated,)
     model = Company
     serializer_class = CompanySerializer
+
+class ChatList(generics.ListCreateAPIView):
+    """List all Chat or create a new Chat"""
+    #permission_classes = (permissions.IsAuthenticated,)
+    model = Chat
+    serializer_class = ChatSerializer
+
+class JobList(generics.ListCreateAPIView):
+    """List all Jobs or create a new Job"""
+    #permission_classes = (permissions.IsAuthenticated,)
+    model = Job
+    serializer_class = JobSerializer
 
 @api_view(('POST',))
 def authenticate(request):
