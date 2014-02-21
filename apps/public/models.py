@@ -30,7 +30,7 @@ class Company(models.Model):
     street = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
-    zip = models.IntegerField(blank=True, null=True)
+    zip = models.CharField(max_length=5)
     country = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     website = models.CharField(max_length=200)
