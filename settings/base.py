@@ -49,7 +49,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 # This should be set to the test domain (e.g. test.django-angular-pt.com)
-ALLOWED_HOSTS = ['localhost:8000', 'localhost:8001']
+ALLOWED_HOSTS = ['quotadeck-backend.herokuapp.com']
+# ALLOWED_HOSTS = ['localhost:8000', 'localhost:8001']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -197,7 +198,9 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8001',
-    'localhost:8000'
+    'localhost:8000',
+    'quotadeck-frontend.herokuapp.com',
+    'quotadeck-backend.herokuapp.com'
 )
 
 try:
