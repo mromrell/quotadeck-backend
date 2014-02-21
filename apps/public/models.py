@@ -48,6 +48,7 @@ class Company(models.Model):
     class Meta:
         verbose_name_plural = 'Company'
 
+
 class CompanyUser(models.Model):
     user = models.OneToOneRel(User)
     email = models.CharField(max_length=200, blank=True, null=True)
