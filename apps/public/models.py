@@ -26,14 +26,14 @@ class Address(models.Model):
         verbose_name_plural = 'Address'
 
 class Company(models.Model):
-    companyName = models.CharField(max_length=200)
-    street = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=200)
-    zip = models.CharField(max_length=5)
-    country = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
-    website = models.CharField(max_length=200)
+    companyName = models.CharField(max_length=200, blank=True, null=True)
+    street = models.CharField(max_length=200, blank=True, null=True)
+    city = models.CharField(max_length=200, blank=True, null=True)
+    state = models.CharField(max_length=200, blank=True, null=True)
+    zip = models.CharField(max_length=5, blank=True, null=True)
+    country = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
+    website = models.CharField(max_length=200, blank=True, null=True)
     revenue = models.IntegerField(blank=True, null=True)
     employeeCount = models.IntegerField(blank=True, null=True)
     industry = models.CharField(max_length=200)
@@ -49,11 +49,11 @@ class Company(models.Model):
         verbose_name_plural = 'Company'
 
 class CompanyUser(models.Model):
-    user = models.ForeignKey(User)
-    email = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
+    user = models.OneToOneRel(User)
+    email = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
     company = models.ForeignKey(Company)
-    dateJoined = models.DateField(default=datetime.now)
+    dateJoined = models.DateField(default=datetime.now, blank=True, null=True)
 
     def __unicode__(self):
         return u'%s, %s' % (self.user, self.company)
@@ -62,16 +62,16 @@ class CompanyUser(models.Model):
         verbose_name_plural = 'CompanyUser'
 
 class SalesUser(models.Model):
-    user = models.ForeignKey(User)
-    email = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
+    user = models.OneToOneRel(User)
+    email = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
     industry = models.CharField(max_length=200, blank=True, null=True)
     productsServices = models.CharField(max_length=200, blank=True, null=True)
     salePriceLow = models.IntegerField(blank=True, null=True)
     salePriceHigh = models.IntegerField(blank=True, null=True)
     userDescription = models.CharField(max_length=1000, blank=True, null=True)
     contacts = models.CharField(max_length=2000, blank=True, null=True)
-    dateJoined = models.DateField(default=datetime.now)
+    dateJoined = models.DateField(default=datetime.now, blank=True, null=True)
 
     def __unicode__(self):
         return u'%s, %s' % (self.user, self.industry)
