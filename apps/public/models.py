@@ -86,8 +86,15 @@ class Job(models.Model):
     user = models.ForeignKey(User)
     company = models.ForeignKey(Company)
     dateAdded = models.DateField(default=datetime.now)
-    jobTitle = models.CharField(max_length=200)
-    jobDescription = models.CharField(max_length=200)
+    listingTitle = models.CharField(max_length=200)
+    industry = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    startDate = models.CharField(max_length=200)
+    totalCost = models.CharField(max_length=200)
+    commissionAmount = models.CharField(max_length=200)
+    linkUrl = models.CharField(max_length=200)
+
+    
 
     def __unicode__(self):
         return u'%s, %s' % (self.jobTitle, self.company)
