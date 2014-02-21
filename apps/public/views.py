@@ -36,6 +36,18 @@ class UserDetail(generics.RetrieveAPIView):
     model = User
     serializer_class = UserSerializer
 
+class CompanyUserDetail(generics.RetrieveAPIView):
+    """Retrieve, update or delete a CompanyUser instance."""
+    permission_classes = (permissions.IsAuthenticated,)
+    model = CompanyUser
+    serializer_class = CompanyUserSerializer
+
+class SalesUserDetail(generics.RetrieveAPIView):
+    """Retrieve, update or delete a SalesUser instance."""
+    permission_classes = (permissions.IsAuthenticated,)
+    model = SalesUser
+    serializer_class = SalesUserSerializer
+
 
 class AddressList(generics.ListCreateAPIView):
     """List all addresses or create a new Address"""
@@ -49,6 +61,12 @@ class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     model = Address
     serializer_class = AddressSerializer
+
+class CompanyList(generics.ListCreateAPIView):
+    """List all Companies or create a new company"""
+    #permission_classes = (permissions.IsAuthenticated,)
+    model = Company
+    serializer_class = CompanySerializer
 
 @api_view(('POST',))
 def authenticate(request):

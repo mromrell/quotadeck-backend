@@ -14,3 +14,18 @@ class AddressSerializer(serializers.ModelSerializer):
     """Serializes an Address object"""
     class Meta:
         model = Address
+
+class CompanySerializer(serializers.ModelSerializer):
+    """Serializes a Company object"""
+    class Meta:
+        model = Company
+
+class CompanyUserSerializer(serializers.ModelSerializer):
+    """Serializes a CompanyUser object"""
+    class Meta:
+        model = CompanyUser
+
+class SalesUserSerializer(serializers.ModelSerializer):
+    """Serializes a SalesUser object"""
+    class Meta:
+        model = SalesUser
