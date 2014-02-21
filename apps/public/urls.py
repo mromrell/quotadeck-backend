@@ -17,7 +17,8 @@ urlpatterns = patterns(
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view(), name='user-detail'),
 
     url(r'^companies$', CompanyList.as_view(), name='company-list'),
-    url(r'^company$', CompanyDetail.as_view(), name='company-detail'),
+    # url(r'^company$', CompanyDetail.as_view(), name='company-detail'),
+    url(r'^company/(?P<pk>[0-9]+)$', CompanyDetail.as_view(), name='company-list'),
     url(r'^company-user/(?P<pk>[0-9]+)$', CompanyUserDetail.as_view(), name='company-user-detail'),
 
     url(r'^applications/(?P<pk>[0-9]+)$', ApplicationList.as_view(), name='application-list'),
