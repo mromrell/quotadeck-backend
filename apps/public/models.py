@@ -49,6 +49,7 @@ class Company(models.Model):
     industry = models.CharField(max_length=200, blank=True, null=True)
     productsServices = models.CharField(max_length=200, blank=True, null=True)
     companyDescription = models.CharField(max_length=1000, blank=True, null=True)
+    imageLink = models.CharField(max_length=500, blank=True, null=True)
     companyType = models.CharField(max_length=200, blank=True, null=True)  # ex: public, private, government etc..
     dateJoined = models.DateField(default=datetime.now, blank=True, null=True)
 
@@ -97,7 +98,8 @@ class Job(models.Model):
     company = models.ForeignKey(Company)
     dateAdded = models.DateField(default=datetime.now, blank=True, null=True)
     jobTitle = models.CharField(max_length=200, blank=True, null=True)
-    jobDescription = models.CharField(max_length=200, blank=True, null=True)
+    imageLink = models.CharField(max_length=500, blank=True, null=True)
+    jobDescription = models.CharField(max_length=20000, blank=True, null=True)
     commission = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
