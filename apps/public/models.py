@@ -100,7 +100,7 @@ class Job(models.Model):
     jobDescription = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
-        return u'%s, %s' % (self.listingTitle, self.company)
+        return u'%s, %s' % (self.jobTitle, self.company)
 
     class Meta:
         verbose_name_plural = 'Job'
