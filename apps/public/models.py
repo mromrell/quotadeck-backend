@@ -99,7 +99,7 @@ class Job(models.Model):
     dateAdded = models.DateField(default=datetime.now, blank=True, null=True)
     jobTitle = models.CharField(max_length=200, blank=True, null=True)
     imageLink = models.CharField(max_length=500, blank=True, null=True)
-    jobDescription = models.CharField(max_length=20000, blank=True, null=True)
+    jobDescription = models.CharField(max_length=2000, blank=True, null=True)
     commission = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
