@@ -35,10 +35,12 @@ class SalesUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalesUser
 
+
 class JobSerializer(serializers.ModelSerializer):
     """Serializes a Job object"""
     class Meta:
         model = Job
+        model
 
 class ApplicationSerializer(serializers.ModelSerializer):
     """Serializes a Application object"""
