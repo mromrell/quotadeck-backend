@@ -37,6 +37,11 @@ class UserDetail(generics.RetrieveAPIView):
     model = User
     serializer_class = UserSerializer
 
+class JobDetail(generics.RetrieveAPIView):
+    """Retrieve, update or delete a User instance."""
+    model = Job
+    serializer_class = JobSerializer
+
 class CompanyUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a CompanyUser instance."""
     permission_classes = (permissions.IsAuthenticated,)
