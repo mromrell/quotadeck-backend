@@ -22,6 +22,7 @@ urlpatterns = patterns(
     url(r'^company-user/(?P<pk>[0-9]+)$', CompanyUserDetail.as_view(), name='company-user-detail'),
 
     url(r'^applications/(?P<pk>[0-9]+)$', ApplicationList.as_view(), name='application-list'),
+    url(r'^application$', ApplicationDetail.as_view(), name='application-detail'),
     url(r'^chat/(?P<pk>[0-9]+)$', ChatList.as_view(), name='chat-list'),
     url(r'^sales-user/(?P<pk>[0-9]+)$', SalesUserDetail.as_view(), name='Sales-user-detail'),
 

@@ -72,6 +72,11 @@ class AddressList(generics.ListCreateAPIView):
     model = Address
     serializer_class = AddressSerializer
 
+class ApplicationDetail(generics.ListCreateAPIView):
+    """List all Application or create a new Address"""
+    model = Application
+    serializer_class = ApplicationSerializer
+
 
 class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
     """Retrieve, update or delete an Address."""

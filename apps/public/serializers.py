@@ -15,6 +15,11 @@ class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
 
+class ApplicationSerializer(serializers.ModelSerializer):
+    """Serializes an Address object"""
+    class Meta:
+        model = Application
+
 class CompanySerializer(serializers.ModelSerializer):
     """Serializes a Company object"""
     class Meta:
