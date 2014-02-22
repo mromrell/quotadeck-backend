@@ -37,17 +37,20 @@ class UserDetail(generics.RetrieveAPIView):
     model = User
     serializer_class = UserSerializer
 
+
 class CompanyUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a CompanyUser instance."""
     permission_classes = (permissions.IsAuthenticated,)
     model = CompanyUser
     serializer_class = CompanyUserSerializer
 
+
 class CompanyDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a CompanyUser instance."""
     # permission_classes = (permissions.IsAuthenticated,)
     model = Company
     serializer_class = CompanySerializer
+
 
 class SalesUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a SalesUser instance."""
@@ -74,11 +77,13 @@ class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Address
     serializer_class = AddressSerializer
 
+
 class CompanyList(generics.ListCreateAPIView):
     """List all Companies or create a new company"""
     #permission_classes = (permissions.IsAuthenticated,)
     model = Company
     serializer_class = CompanySerializer
+
 
 class ChatList(generics.ListCreateAPIView):
     """List all Chat or create a new Chat"""
@@ -86,11 +91,27 @@ class ChatList(generics.ListCreateAPIView):
     model = Chat
     serializer_class = ChatSerializer
 
+
 class JobList(generics.ListCreateAPIView):
     """List all Jobs or create a new Job"""
     #permission_classes = (permissions.IsAuthenticated,)
     model = Job
     serializer_class = JobSerializer
+
+
+@api_view(('GET', ))
+def getJobs(request):
+    jobs_list = JobList.object.all()
+    company_list = []
+    new_list = {}
+
+    for job in jobs_list:
+        company_list.append(Company.object.one(job.company))
+
+
+
+
+
 
 @api_view(('POST',))
 def authenticate(request):
@@ -113,3 +134,15 @@ def authenticate(request):
 def logout(request):
     auth.logout(request)
     return JSONResponse([{'success': 'Logged out!'}])
+
+# @api_view(('GET',))
+# def user_leadsources(request, pk):
+#     lead_source_list = LeadSource.objects.filter(created_by=pk)
+#     serialize = LeadSourceSerializer(lead_source_list)
+#     return Response(serialize.data)
+
+@api_view(('GET',))
+def jobs_list(request, pk):
+    lead_source_list = LeadSource.objects.filter(created_by=pk)
+    serialize = LeadSourceSerializer(lead_source_list)
+    return Response(serialize.data)
