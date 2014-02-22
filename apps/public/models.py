@@ -21,10 +21,6 @@ def hash_password(sender, instance=None, created=False, **kwargs):
         instance.save()
 
 
-@receiver(post_save, sender=User)\
-def send_confirm_email(sender, instance=None):
-    
-
 class Address(models.Model):
     ''' Model features for an address '''
     street = models.CharField(max_length=200, blank=True, null=True)
