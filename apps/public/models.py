@@ -4,6 +4,7 @@ from rest_framework.authtoken.models import Token
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from datetime import datetime
+from django.contrib.auth.hashers import is_password_usable, make_password
 
 @receiver(post_save, sender=User)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -12,12 +13,20 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
+@receiver(post_save, sender=User)
+def hash_password(sender, instance=None, created=False, **kwargs):
+    ''' Hashes the password given when a User is created or updated '''
+    if not is_password_usable(instance.password):
+        instance.password = make_password(instance.password)
+        instance.save()
+
+
 class Address(models.Model):
     ''' Model features for an address '''
-    street = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=200)
-    country = models.CharField(max_length=200)
+    street = models.CharField(max_length=200, blank=True, null=True)
+    city = models.CharField(max_length=200, blank=True, null=True)
+    state = models.CharField(max_length=200, blank=True, null=True)
+    country = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
         return u'%s, %s, %s' % (self.street, self.city, self.state)
@@ -86,16 +95,9 @@ class SalesUser(models.Model):
 class Job(models.Model):
     user = models.ForeignKey(User)
     company = models.ForeignKey(Company)
-    dateAdded = models.DateField(default=datetime.now)
-    listingTitle = models.CharField(max_length=200)
-    industry = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-    startDate = models.CharField(max_length=200)
-    totalCost = models.CharField(max_length=200)
-    commissionAmount = models.CharField(max_length=200)
-    linkUrl = models.CharField(max_length=200)
-
-    
+    dateAdded = models.DateField(default=datetime.now, blank=True, null=True)
+    jobTitle = models.CharField(max_length=200, blank=True, null=True)
+    jobDescription = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
         return u'%s, %s' % (self.listingTitle, self.company)
