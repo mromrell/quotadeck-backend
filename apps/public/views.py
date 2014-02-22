@@ -25,20 +25,21 @@ class JSONResponse(HttpResponse):
 
 class UserList(generics.ListCreateAPIView):
     """List all users or create a new User"""
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
+    # TODO: Figure out this permission class
     model = User
     serializer_class = UserSerializer
 
 
 class UserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a User instance."""
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
     model = User
     serializer_class = UserSerializer
 
 class CompanyUserDetail(generics.RetrieveAPIView):
     """Retrieve, update or delete a CompanyUser instance."""
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,)
     model = CompanyUser
     serializer_class = CompanyUserSerializer
 

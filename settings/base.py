@@ -192,6 +192,7 @@ LOGGING = {
         },
     }
 }
+SECRET_KEY = '^+huj2wtmaob37@6l0csq6lu!&c8@=d@&le%*hb_yg249t-d7n'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
