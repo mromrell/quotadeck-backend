@@ -98,7 +98,7 @@ class Job(models.Model):
     
 
     def __unicode__(self):
-        return u'%s, %s' % (self.jobTitle, self.company)
+        return u'%s, %s' % (self.listingTitle, self.company)
 
     class Meta:
         verbose_name_plural = 'Job'
