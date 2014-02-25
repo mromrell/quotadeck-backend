@@ -11,10 +11,10 @@ class Migration(SchemaMigration):
         # Adding model 'Address'
         db.create_table(u'public_address', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('street', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('state', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('country', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('street', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('city', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('state', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('country', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
         ))
         db.send_create_signal(u'public', ['Address'])
 
@@ -34,6 +34,7 @@ class Migration(SchemaMigration):
             ('industry', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('productsServices', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('companyDescription', self.gf('django.db.models.fields.CharField')(max_length=1000, null=True, blank=True)),
+            ('imageLink', self.gf('django.db.models.fields.CharField')(max_length=500, null=True, blank=True)),
             ('companyType', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('dateJoined', self.gf('django.db.models.fields.DateField')(default=datetime.datetime.now, null=True, blank=True)),
         ))
@@ -71,14 +72,11 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('company', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['public.Company'])),
-            ('dateAdded', self.gf('django.db.models.fields.DateField')(default=datetime.datetime.now)),
-            ('listingTitle', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('industry', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('startDate', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('totalCost', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('commissionAmount', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('linkUrl', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('dateAdded', self.gf('django.db.models.fields.DateField')(default=datetime.datetime.now, null=True, blank=True)),
+            ('jobTitle', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('imageLink', self.gf('django.db.models.fields.CharField')(max_length=500, null=True, blank=True)),
+            ('jobDescription', self.gf('django.db.models.fields.CharField')(max_length=2000, null=True, blank=True)),
+            ('commission', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
         ))
         db.send_create_signal(u'public', ['Job'])
 
@@ -183,11 +181,11 @@ class Migration(SchemaMigration):
         },
         u'public.address': {
             'Meta': {'object_name': 'Address'},
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'country': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'city': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'country': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'state': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'street': ('django.db.models.fields.CharField', [], {'max_length': '200'})
+            'state': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'street': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
         },
         u'public.application': {
             'Meta': {'object_name': 'Application'},
@@ -218,6 +216,7 @@ class Migration(SchemaMigration):
             'dateJoined': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime.now', 'null': 'True', 'blank': 'True'}),
             'employeeCount': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'imageLink': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
             'industry': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'phone': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'productsServices': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
@@ -238,16 +237,13 @@ class Migration(SchemaMigration):
         },
         u'public.job': {
             'Meta': {'object_name': 'Job'},
-            'commissionAmount': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'commission': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'company': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['public.Company']"}),
-            'dateAdded': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime.now'}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'dateAdded': ('django.db.models.fields.DateField', [], {'default': 'datetime.datetime.now', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'industry': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'linkUrl': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'listingTitle': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'startDate': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'totalCost': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'imageLink': ('django.db.models.fields.CharField', [], {'max_length': '500', 'null': 'True', 'blank': 'True'}),
+            'jobDescription': ('django.db.models.fields.CharField', [], {'max_length': '2000', 'null': 'True', 'blank': 'True'}),
+            'jobTitle': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'public.rating': {

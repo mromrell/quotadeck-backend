@@ -119,6 +119,21 @@ def getJobs(request):
 
 
 
+@api_view(('POST',))
+# @permission_classes((IsAdmin,))
+def custom_new_user(request):
+    request.DATA['username'] = request.DATA['email']
+    user = UserSerializer(data=request.DATA)
+
+    if user.is_valid():
+        user.save()
+    else:
+        if 'username' in user.errors and user.errors['username'] == ['User with this Username already exists.']:
+            return Response({'errors': { 'email': ['User with this e-mail already exists.']}}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({'errors': user.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(user.data)
 
 
 
