@@ -32,6 +32,6 @@ urlpatterns = patterns(
     url(r'^job-details/(?P<pk>[0-9]+)$', JobDetail.as_view(), name='job-detail'),
 )
 
-urlpatterns += patterns('', url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'))
-
+# urlpatterns += patterns('', url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'))
+urlpatterns += patterns('', url(r'^api-token-auth/', NewAuthToken.as_view(), name='NewAuthToken'))
 urlpatterns = format_suffix_patterns(urlpatterns)
