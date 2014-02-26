@@ -167,6 +167,19 @@ def authenticate(request):
         c['message'] = 'Login failed!'
         return render_to_response('partials/login.tpl.html', c)
 
+@api_view(('GET',))
+def uploadedimages(request, location_id):
+    location = Location.objects.get(id=location_id)
+    photo_name = location.photos.name.split("/")[-1]
+    # if request.method == 'GET':
+    #     logo = Logo.objects.get(consultant_id=company.consultant_id)
+    if request.is_secure():
+        photo_url = ''.join(['https://', request.META['HTTP_HOST'], '/static/', photo_name])
+    else:
+        photo_url = ''.join(['http://', request.META['HTTP_HOST'], '/static/', photo_name])
+
+    response = [photo_url, location_id]
+    return Response(response)
 
 def logout(request):
     auth.logout(request)

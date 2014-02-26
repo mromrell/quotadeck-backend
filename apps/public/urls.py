@@ -16,6 +16,7 @@ urlpatterns = patterns(
     url(r'^users$', UserList.as_view(), name='user-list'),
     url(r'^users/new$', custom_new_user, name='custom-new-user'),
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view(), name='user-detail'),
+    url(r'^uploadedimages/(?P<location_id>.+)$', uploadedimages, name='uploadedimages'),
 
     url(r'^companies$', CompanyList.as_view(), name='company-list'),
     # url(r'^company$', CompanyDetail.as_view(), name='company-detail'),
