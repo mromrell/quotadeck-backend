@@ -95,12 +95,18 @@ class SalesUser(models.Model):
 
 class Job(models.Model):
     user = models.ForeignKey(User)
-    company = models.ForeignKey(Company)
-    dateAdded = models.DateField(default=datetime.now, blank=True, null=True)
     jobTitle = models.CharField(max_length=200, blank=True, null=True)
-    imageLink = models.CharField(max_length=500, blank=True, null=True)
+    industry = models.CharField(max_length=200, blank=True, null=True)
     jobDescription = models.CharField(max_length=2000, blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
+    startDate = models.CharField(max_length=200, blank=True, null=True)
+    totalCost = models.CharField(max_length=200, blank=True, null=True)
     commission = models.IntegerField(blank=True, null=True)
+    linkUrl = models.CharField(max_length=200, blank=True, null=True)
+    company = models.CharField(max_length=200, blank=True, null=True)
+    # company = models.ForeignKey(Company)
+    imageLink = models.CharField(max_length=500, blank=True, null=True)
+    dateAdded = models.DateField(default=datetime.now, blank=True, null=True)
 
     def __unicode__(self):
         return u'%s, %s' % (self.jobTitle, self.company)
